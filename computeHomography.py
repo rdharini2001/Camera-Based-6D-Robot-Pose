@@ -1,4 +1,4 @@
-pts_src[] = # object points 
+pts_src[] = # planar object points 
 pts_dst[] = # image points
 #finding homography
 import cv2
