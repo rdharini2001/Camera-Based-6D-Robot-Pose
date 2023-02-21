@@ -35,6 +35,7 @@ for item in pts_src_1:
 import cv2,itertools
 # from numpy.linalg import inv
 # h=inv(h)
+
 for pts in pts_src_final:
     # np.append(pts,1)
     pts=pts.tolist()
@@ -49,11 +50,11 @@ for pts in pts_src_final:
     # print("H")
     # print(h)
     pts_dst=np.matmul(h,pts)
-    print(np.shape(pts_dst))
+    # print(pts_dst)
     pts_dst[0]=pts_dst[0]/pts_dst[2]
     pts_dst[1]=pts_dst[1]/pts_dst[2]
     pts_dst[2]=1
-    # print(pts_dst)
+    print(pts_dst)
     dst.append(pts_dst)
 
 # print("Hello")
