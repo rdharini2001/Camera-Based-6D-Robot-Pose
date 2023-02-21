@@ -1,7 +1,7 @@
 import cv2 
 
 key = cv2. waitKey(1)
-webcam = cv2.VideoCapture(0) #replace 0 with the IP URL of the streaming camera
+webcam = cv2.VideoCapture('rtsp://admin:artpark123@192.168.0.219/4') #replace 0 with the IP URL of the streaming camera
 while True:
     try:
         check, frame = webcam.read()
