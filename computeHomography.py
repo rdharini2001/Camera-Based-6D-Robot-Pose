@@ -67,7 +67,7 @@ img_test_1=[]
 for pts in img_test:
 #     # print(pts)
 #     # print()
-    pts=cv2.undistortPoints(np.array(pts),camera_matrix,distortion_matrix)
+    pts=cv2.undistortPoints(np.array(pts),camera_matrix,distortion_matrix, P=camera_matrix)
     img_test_1.append(pts)
 
 img_src_final=[]
