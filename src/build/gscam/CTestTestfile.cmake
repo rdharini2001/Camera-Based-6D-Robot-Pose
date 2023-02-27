@@ -1,0 +1,6 @@
+# CMake generated Testfile for 
+# Source directory: /home/whitewolf/Desktop/RBCCPS2023/src/src/gscam
+# Build directory: /home/whitewolf/Desktop/RBCCPS2023/src/build/gscam
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
