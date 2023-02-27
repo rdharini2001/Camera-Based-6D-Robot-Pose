@@ -1,0 +1,7 @@
+<launch>
+
+<node name="cam1" pkg="vision" type="image_imshow_1.py" output="screen" respawn="true"/>
+<node name="cam2" pkg="vision" type="image_imshow_2.py" output="screen" respawn="true"/>
+<node name="cam3" pkg="vision" type="image_imshow_3.py" output="screen" respawn="true"/>
+<node name="cam4" pkg="vision" type="image_imshow_4.py" output="screen" respawn="true"/>
+</launch>
