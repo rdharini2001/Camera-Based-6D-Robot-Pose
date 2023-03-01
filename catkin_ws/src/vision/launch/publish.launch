@@ -1,0 +1,9 @@
+<launch>
+
+<node name="cam1" pkg="vision" type="camera1.py" output="screen" respawn="true"/>
+<node name="cam2" pkg="vision" type="camera2.py" output="screen" respawn="true"/>
+<node name="cam3" pkg="vision" type="camera3.py" output="screen" respawn="true"/>
+<node name="cam4" pkg="vision" type="camera4.py" output="screen" respawn="true"/>
+
+
+</launch>

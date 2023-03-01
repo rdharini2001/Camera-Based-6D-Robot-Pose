@@ -1,2 +1,0 @@
-gscam
--DCATKIN_DEVEL_PREFIX=/home/whitewolf/Desktop/RBCCPS2023/src/devel -DCMAKE_INSTALL_PREFIX=/home/whitewolf/Desktop/RBCCPS2023/src/install -G Unix Makefiles
