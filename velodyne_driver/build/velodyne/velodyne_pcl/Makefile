@@ -56,6 +56,39 @@ CMAKE_BINARY_DIR = /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"main\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -80,29 +113,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -114,26 +124,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : test/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\" \"main\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,51 +168,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_nodejs: velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-pcl_msgs_generate_messages_nodejs/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
-.PHONY : pcl_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_nodejs: velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-
-.PHONY : std_srvs_generate_messages_nodejs
-
-# fast build rule for target.
-std_srvs_generate_messages_nodejs/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
-.PHONY : std_srvs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_lisp: velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-.PHONY : std_srvs_generate_messages_lisp
-
-# fast build rule for target.
-std_srvs_generate_messages_lisp/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
-.PHONY : std_srvs_generate_messages_lisp/fast
-
-# Convenience name for target.
 velodyne/velodyne_pcl/CMakeFiles/clean_test_results_velodyne_pcl.dir/rule:
 	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/clean_test_results_velodyne_pcl.dir/rule
 .PHONY : velodyne/velodyne_pcl/CMakeFiles/clean_test_results_velodyne_pcl.dir/rule
@@ -228,109 +183,34 @@ clean_test_results_velodyne_pcl/fast:
 .PHONY : clean_test_results_velodyne_pcl/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_cpp: velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+_run_tests_velodyne_pcl_roslint_package: velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule
 
-.PHONY : std_srvs_generate_messages_cpp
+.PHONY : _run_tests_velodyne_pcl_roslint_package
 
 # fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
+_run_tests_velodyne_pcl_roslint_package/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/build.make velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/build
+.PHONY : _run_tests_velodyne_pcl_roslint_package/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule
 
 # Convenience name for target.
-run_tests_velodyne_pcl_roslint: velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule
+run_tests_velodyne_pcl_roslint_package: velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule
 
-.PHONY : run_tests_velodyne_pcl_roslint
+.PHONY : run_tests_velodyne_pcl_roslint_package
 
 # fast build rule for target.
-run_tests_velodyne_pcl_roslint/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/build.make velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/build
-.PHONY : run_tests_velodyne_pcl_roslint/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule
-
-# Convenience name for target.
-_run_tests_velodyne_pcl_roslint: velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule
-
-.PHONY : _run_tests_velodyne_pcl_roslint
-
-# fast build rule for target.
-_run_tests_velodyne_pcl_roslint/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/build.make velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/build
-.PHONY : _run_tests_velodyne_pcl_roslint/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_eus: velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_cpp: velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_cpp
-
-# fast build rule for target.
-pcl_msgs_generate_messages_cpp/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
-.PHONY : pcl_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
-
-# Convenience name for target.
-nodelet_topic_tools_gencfg: velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
-
-.PHONY : nodelet_topic_tools_gencfg
-
-# fast build rule for target.
-nodelet_topic_tools_gencfg/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/build.make velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/build
-.PHONY : nodelet_topic_tools_gencfg/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_py: velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_py
-
-# fast build rule for target.
-pcl_msgs_generate_messages_py/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-.PHONY : pcl_msgs_generate_messages_py/fast
+run_tests_velodyne_pcl_roslint_package/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/build.make velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/build
+.PHONY : run_tests_velodyne_pcl_roslint_package/fast
 
 # Convenience name for target.
 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule:
@@ -348,79 +228,64 @@ pcl_msgs_generate_messages_lisp/fast:
 .PHONY : pcl_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-pcl_ros_gencfg: velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule
+pcl_msgs_generate_messages_py: velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
-.PHONY : pcl_ros_gencfg
+.PHONY : pcl_msgs_generate_messages_py
 
 # fast build rule for target.
-pcl_ros_gencfg/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/build
-.PHONY : pcl_ros_gencfg/fast
+pcl_msgs_generate_messages_py/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-roslint_velodyne_pcl: velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule
+pcl_msgs_generate_messages_cpp: velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/rule
 
-.PHONY : roslint_velodyne_pcl
+.PHONY : pcl_msgs_generate_messages_cpp
 
 # fast build rule for target.
-roslint_velodyne_pcl/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/build.make velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/build
-.PHONY : roslint_velodyne_pcl/fast
+pcl_msgs_generate_messages_cpp/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_cpp.dir/build
+.PHONY : pcl_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule
 
 # Convenience name for target.
-topic_tools_generate_messages_lisp: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+_run_tests_velodyne_pcl_roslint: velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/rule
 
-.PHONY : topic_tools_generate_messages_lisp
+.PHONY : _run_tests_velodyne_pcl_roslint
 
 # fast build rule for target.
-topic_tools_generate_messages_lisp/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
-.PHONY : topic_tools_generate_messages_lisp/fast
+_run_tests_velodyne_pcl_roslint/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/build.make velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint.dir/build
+.PHONY : _run_tests_velodyne_pcl_roslint/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule
 
 # Convenience name for target.
-run_tests_velodyne_pcl: velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule
+run_tests_velodyne_pcl_roslint: velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/rule
 
-.PHONY : run_tests_velodyne_pcl
+.PHONY : run_tests_velodyne_pcl_roslint
 
 # fast build rule for target.
-run_tests_velodyne_pcl/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/build.make velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/build
-.PHONY : run_tests_velodyne_pcl/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-topic_tools_generate_messages_cpp: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
-
-.PHONY : topic_tools_generate_messages_cpp
-
-# fast build rule for target.
-topic_tools_generate_messages_cpp/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
-.PHONY : topic_tools_generate_messages_cpp/fast
+run_tests_velodyne_pcl_roslint/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/build.make velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint.dir/build
+.PHONY : run_tests_velodyne_pcl_roslint/fast
 
 # Convenience name for target.
 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule:
@@ -453,34 +318,19 @@ _run_tests_velodyne_pcl/fast:
 .PHONY : _run_tests_velodyne_pcl/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule
 
 # Convenience name for target.
-topic_tools_generate_messages_py: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+run_tests_velodyne_pcl: velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/rule
 
-.PHONY : topic_tools_generate_messages_py
+.PHONY : run_tests_velodyne_pcl
 
 # fast build rule for target.
-topic_tools_generate_messages_py/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/build
-.PHONY : topic_tools_generate_messages_py/fast
-
-# Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-topic_tools_generate_messages_eus: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
-
-.PHONY : topic_tools_generate_messages_eus
-
-# fast build rule for target.
-topic_tools_generate_messages_eus/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/build
-.PHONY : topic_tools_generate_messages_eus/fast
+run_tests_velodyne_pcl/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/build.make velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl.dir/build
+.PHONY : run_tests_velodyne_pcl/fast
 
 # Convenience name for target.
 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_nodejs.dir/rule:
@@ -498,49 +348,124 @@ topic_tools_generate_messages_nodejs/fast:
 .PHONY : topic_tools_generate_messages_nodejs/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-run_tests_velodyne_pcl_roslint_package: velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/rule
+pcl_msgs_generate_messages_nodejs: velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : run_tests_velodyne_pcl_roslint_package
+.PHONY : pcl_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-run_tests_velodyne_pcl_roslint_package/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/build.make velodyne/velodyne_pcl/CMakeFiles/run_tests_velodyne_pcl_roslint_package.dir/build
-.PHONY : run_tests_velodyne_pcl_roslint_package/fast
+pcl_msgs_generate_messages_nodejs/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+.PHONY : pcl_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
 
 # Convenience name for target.
-_run_tests_velodyne_pcl_roslint_package: velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/rule
+topic_tools_generate_messages_cpp: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/rule
 
-.PHONY : _run_tests_velodyne_pcl_roslint_package
+.PHONY : topic_tools_generate_messages_cpp
 
 # fast build rule for target.
-_run_tests_velodyne_pcl_roslint_package/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/build.make velodyne/velodyne_pcl/CMakeFiles/_run_tests_velodyne_pcl_roslint_package.dir/build
-.PHONY : _run_tests_velodyne_pcl_roslint_package/fast
+topic_tools_generate_messages_cpp/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_cpp.dir/build
+.PHONY : topic_tools_generate_messages_cpp/fast
 
 # Convenience name for target.
-velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-.PHONY : velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_py: velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_py.dir/rule
+nodelet_topic_tools_gencfg: velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/rule
 
-.PHONY : std_srvs_generate_messages_py
+.PHONY : nodelet_topic_tools_gencfg
 
 # fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_py.dir/build.make velodyne/velodyne_pcl/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
+nodelet_topic_tools_gencfg/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/build.make velodyne/velodyne_pcl/CMakeFiles/nodelet_topic_tools_gencfg.dir/build
+.PHONY : nodelet_topic_tools_gencfg/fast
+
+# Convenience name for target.
+velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_eus: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/rule
+
+.PHONY : topic_tools_generate_messages_eus
+
+# fast build rule for target.
+topic_tools_generate_messages_eus/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_eus.dir/build
+.PHONY : topic_tools_generate_messages_eus/fast
+
+# Convenience name for target.
+velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_lisp: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/rule
+
+.PHONY : topic_tools_generate_messages_lisp
+
+# fast build rule for target.
+topic_tools_generate_messages_lisp/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_lisp.dir/build
+.PHONY : topic_tools_generate_messages_lisp/fast
+
+# Convenience name for target.
+velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+
+# Convenience name for target.
+topic_tools_generate_messages_py: velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/rule
+
+.PHONY : topic_tools_generate_messages_py
+
+# fast build rule for target.
+topic_tools_generate_messages_py/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/build.make velodyne/velodyne_pcl/CMakeFiles/topic_tools_generate_messages_py.dir/build
+.PHONY : topic_tools_generate_messages_py/fast
+
+# Convenience name for target.
+velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule
+
+# Convenience name for target.
+pcl_ros_gencfg: velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/rule
+
+.PHONY : pcl_ros_gencfg
+
+# fast build rule for target.
+pcl_ros_gencfg/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/build.make velodyne/velodyne_pcl/CMakeFiles/pcl_ros_gencfg.dir/build
+.PHONY : pcl_ros_gencfg/fast
+
+# Convenience name for target.
+velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f CMakeFiles/Makefile2 velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule
+.PHONY : velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule
+
+# Convenience name for target.
+roslint_velodyne_pcl: velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/rule
+
+.PHONY : roslint_velodyne_pcl
+
+# fast build rule for target.
+roslint_velodyne_pcl/fast:
+	cd /home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build && $(MAKE) -f velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/build.make velodyne/velodyne_pcl/CMakeFiles/roslint_velodyne_pcl.dir/build
+.PHONY : roslint_velodyne_pcl/fast
 
 # Help Target
 help:
@@ -548,38 +473,33 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
-	@echo "... install"
-	@echo "... pcl_msgs_generate_messages_nodejs"
-	@echo "... std_srvs_generate_messages_nodejs"
-	@echo "... std_srvs_generate_messages_lisp"
-	@echo "... clean_test_results_velodyne_pcl"
-	@echo "... std_srvs_generate_messages_cpp"
-	@echo "... run_tests_velodyne_pcl_roslint"
-	@echo "... _run_tests_velodyne_pcl_roslint"
-	@echo "... std_srvs_generate_messages_eus"
-	@echo "... pcl_msgs_generate_messages_cpp"
-	@echo "... nodelet_topic_tools_gencfg"
-	@echo "... pcl_msgs_generate_messages_py"
-	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... install/local"
-	@echo "... pcl_ros_gencfg"
-	@echo "... roslint_velodyne_pcl"
-	@echo "... topic_tools_generate_messages_lisp"
-	@echo "... run_tests_velodyne_pcl"
-	@echo "... topic_tools_generate_messages_cpp"
+	@echo "... list_install_components"
+	@echo "... test"
+	@echo "... clean_test_results_velodyne_pcl"
+	@echo "... install/strip"
+	@echo "... _run_tests_velodyne_pcl_roslint_package"
+	@echo "... run_tests_velodyne_pcl_roslint_package"
+	@echo "... pcl_msgs_generate_messages_lisp"
+	@echo "... pcl_msgs_generate_messages_py"
+	@echo "... install"
+	@echo "... pcl_msgs_generate_messages_cpp"
+	@echo "... _run_tests_velodyne_pcl_roslint"
+	@echo "... run_tests_velodyne_pcl_roslint"
 	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... _run_tests_velodyne_pcl"
-	@echo "... topic_tools_generate_messages_py"
-	@echo "... topic_tools_generate_messages_eus"
-	@echo "... edit_cache"
+	@echo "... run_tests_velodyne_pcl"
 	@echo "... topic_tools_generate_messages_nodejs"
+	@echo "... pcl_msgs_generate_messages_nodejs"
+	@echo "... topic_tools_generate_messages_cpp"
+	@echo "... nodelet_topic_tools_gencfg"
+	@echo "... topic_tools_generate_messages_eus"
+	@echo "... topic_tools_generate_messages_lisp"
 	@echo "... rebuild_cache"
-	@echo "... run_tests_velodyne_pcl_roslint_package"
-	@echo "... _run_tests_velodyne_pcl_roslint_package"
-	@echo "... std_srvs_generate_messages_py"
-	@echo "... test"
-	@echo "... list_install_components"
+	@echo "... edit_cache"
+	@echo "... topic_tools_generate_messages_py"
+	@echo "... pcl_ros_gencfg"
+	@echo "... roslint_velodyne_pcl"
 .PHONY : help
 
 

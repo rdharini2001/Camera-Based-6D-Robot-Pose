@@ -7,6 +7,7 @@
 subdirs("gtest")
 subdirs("velodyne/velodyne")
 subdirs("velodyne/velodyne_msgs")
+subdirs("selected_points_publisher")
 subdirs("velodyne/velodyne_driver")
 subdirs("velodyne/velodyne_laserscan")
 subdirs("velodyne/velodyne_pcl")

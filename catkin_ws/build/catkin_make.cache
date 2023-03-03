@@ -1,2 +1,2 @@
-vision
+selected_points_publisher:vision
 -DCATKIN_DEVEL_PREFIX=/home/rbccps/Desktop/RBCCPS2023/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rbccps/Desktop/RBCCPS2023/catkin_ws/install -G Unix Makefiles

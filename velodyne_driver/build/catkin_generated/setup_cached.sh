@@ -12,5 +12,5 @@ export LD_LIBRARY_PATH="/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/devel/li
 export PKG_CONFIG_PATH="/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/build'
 export PYTHONPATH="/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/devel/lib/python3/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROSLISP_PACKAGE_DIRECTORIES='/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/devel/share/common-lisp'
 export ROS_PACKAGE_PATH="/home/rbccps/Desktop/RBCCPS2023/velodyne_driver/src:$ROS_PACKAGE_PATH"

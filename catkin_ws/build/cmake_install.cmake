@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/rbccps/Desktop/RBCCPS2023/catkin_ws/build/gtest/cmake_install.cmake")
+  include("/home/rbccps/Desktop/RBCCPS2023/catkin_ws/build/selected_points_publisher/cmake_install.cmake")
   include("/home/rbccps/Desktop/RBCCPS2023/catkin_ws/build/vision/cmake_install.cmake")
 
 endif()
