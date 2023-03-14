@@ -16,7 +16,7 @@ def click_event(event, x, y, flags, params):
       cv2.circle(img, (x,y), 3, (0,255,255), -1)
  
 # read the input image
-img = cv2.imread('checker_points.png')
+img = cv2.imread('saved_img.jpg')
 
 # create a window
 cv2.namedWindow('Point Coordinates')

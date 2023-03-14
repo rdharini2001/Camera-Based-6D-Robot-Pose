@@ -19,7 +19,7 @@ class laserconvert:
 		self.pub = rospy.Publisher("/converted_pc", PointCloud2, queue_size=1)
 		self.header = Header()
 		self.rate=rospy.Rate(50)
-		self.header.frame_id = "laser"
+		self.header.frame_id = "cloud"
 		self.fields = [PointField('x', 0, PointField.FLOAT32, 1),
           PointField('y', 4, PointField.FLOAT32, 1),
           PointField('z', 8, PointField.FLOAT32, 1),
@@ -109,7 +109,7 @@ class laserconvert:
 			pass
 
 		# if lengthplank!=0.0:
-		if 0.35<=lengthplank<=0.61:
+		if 0.35<=lengthplank<=0.81:
 		# if lengthplank>0.0:
 			# print("again")
 

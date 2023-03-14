@@ -1,7 +1,7 @@
 import cv2 
 
 key = cv2. waitKey(1)
-webcam = cv2.VideoCapture('rtsp://admin:artpark123@192.168.0.219/4') #replace 0 with the IP URL of the streaming camera
+webcam = cv2.VideoCapture('rtsp://admin:artpark123@192.168.0.219/1') #replace 0 with the IP URL of the streaming camera
 while True:
     try:
         check, frame = webcam.read()
@@ -16,16 +16,7 @@ while True:
             img_new = cv2.imshow("Captured Image", img_new)
             cv2.waitKey(1650)
             cv2.destroyAllWindows()
-            print("Processing image...")
-            img_ = cv2.imread('saved_img.jpg', cv2.IMREAD_ANYCOLOR)
-            print("Converting RGB image to grayscale...")
-            gray = cv2.cvtColor(img_, cv2.COLOR_BGR2GRAY)
-            print("Converted RGB image to grayscale...")
-            print("Resizing image to 28x28 scale...")
-            img_ = cv2.resize(gray,(28,28))
-            print("Resized...")
-            img_resized = cv2.imwrite(filename='saved_img-final.jpg', img=img_)
-            print("Image saved!")
+           
         
             break
         elif key == ord('q'):
