@@ -1,0 +1,61 @@
+Procedure for Data collection:
+
+-> PLEASE SWITCH ON ALL THE LIGHTS!
+
+-> Make sure ROS Master is the SAME for both:
+	> Add these lines to the bashrc of the slave
+		export ROS_MASTER_URI=http://IP.OF.THE.MASTER:11311
+		export ROS_IP=IP.OF.THE.SLAVE
+	> Usually ROS Master is configured to the volta making your PC the slave
+	
+-> SSH into the Volta, currently the volta is 192.168.0.130
+	> ssh volta@192.168.0.130
+	> password: volta123
+	
+-> Exec this command everytime you the volta is switched on:
+	> sudo chmod 777 /dev/ttyUSB*
+	
+-> Change directory to new_cat_ws:
+	> cd new_cat_ws
+	
+-> Source the workspace:
+	> source devel/setup.bash
+	
+-> Launch the following:
+	> volta_base bringup.launch
+	> volta_base sensors.launch
+	> volta_navigation navigation.launch 
+	
+-> On your PC, launch the LiDAR driver:
+	> Velodyne:
+		> cd velodyne_driver/
+		> source devel/setup.bash
+		> roslaunch velodyne_pointcloud VLP-32C_points.launch
+	OR
+	> SICK:
+		> cd sick_scan_ws/
+		> source devel_isolated/setup.bash
+		> roslaunch sick_scan sick_lms_1xx.launch 
+		
+-> Launch the camera feed publishers:
+	> cd catkin_ws/
+	> source devel/setup.bash
+	> roslaunch vision publish.launch
+	
+-> Run the Approximate Time Synchronizer Script (in the same catkin_ws as above):
+	> rosrun ats sync_sick.py 
+	OR
+	> rosrun ats sync_velodyne.py
+	
+-> Run the selected point publisher scripts for tracking the plank and publishing the GT (in the same catkin_ws as above):
+	> roslaunch selected_points_publisher publish_sick.launch
+	OR
+	> roslaunch selected_points_publisher publish_velodyne.launch
+	
+	(You might never need the velodyne and please be careful with the velodyne code as I feel it might be a little buggy)
+	
+-> Record all the following topics
+
+/BMS_volta /amcl/parameter_descriptions /amcl/parameter_updates /amcl_pose /cam1_sync /cam2_sync /cam3_sync /cam4_sync /cloud /cmd_vel /converted_pc /diag /diag_enable /diagnostics /e_stop_status /e_stop_sw_enable /final_gt_sick /goal_server_vel/cmd_vel /imu/data /initialpose /joint_states /joy /joy/cmd_vel /joy/set_feedback /keyboard/cmd_vel /lidar_gt_sick /map /map_metadata/move_base/DWAPlannerROS/cost_cloud /move_base/DWAPlannerROS/global_plan /move_base/DWAPlannerROS/local_plan /move_base/DWAPlannerROS/parameter_descriptions /move_base/DWAPlannerROS/parameter_updates /move_base/DWAPlannerROS/trajectory_cloud /move_base/GlobalPlanner/parameter_descriptions /move_base/GlobalPlanner/parameter_updates /move_base/GlobalPlanner/plan /move_base/GlobalPlanner/potential /move_base/cancel /move_base/current_goal /move_base/feedback /move_base/global_costmap/costmap /move_base/global_costmap/costmap_updates /move_base/global_costmap/footprint /move_base/global_costmap/inflation/parameter_descriptions /move_base/global_costmap/inflation/parameter_updates /move_base/global_costmap/obstacles_laser/parameter_descriptions /move_base/global_costmap/obstacles_laser/parameter_updates /move_base/global_costmap/parameter_descriptions /move_base/global_costmap/parameter_updates /move_base/global_costmap/static/parameter_descriptions /move_base/global_costmap/static/parameter_updates /move_base/goal /move_base/local_costmap/costmap /move_base/local_costmap/costmap_updates /move_base/local_costmap/footprint /move_base/local_costmap/inflation/parameter_descriptions /move_base/local_costmap/inflation/parameter_updates /move_base/local_costmap/obstacles_laser/parameter_descriptions /move_base/local_costmap/obstacles_laser/parameter_updates /move_base/local_costmap/parameter_descriptions /move_base/local_costmap/parameter_updates /move_base/parameter_descriptions /move_base/parameter_updates /move_base/result /move_base/status /move_base_simple/goal /nav/cmd_vel /odometry/wheel /particlecloud /rosout /rosout_agg /rpm_pub /rpm_sub /rviz_selected_points /scan /scan_filtered /scan_sync /serial_node/parameter_descriptions /serial_node/parameter_updates /tf /tf_static /user/cmd_vel /volta_base_controller/cmd_vel /volta_base_controller/imu/data /volta_base_controller/odom /volta_base_controller/parameter_descriptions /volta_base_controller/parameter_updates /wheel_odom /scan_sync_velodyne /velodyne_points /final_gt_velodyne /lidar_gt_velodyne /converted_pc_velodyne /robot0_gt_velodyne /robot0_gt
+
+	> rosbag record <ALL THE ABOVE TOPICS>
