@@ -1,2 +1,2 @@
-# Implementation of the paper - Leveraging Fixed Infrastructure Cameras for Collaborative Multi-View Perception for Indoor Autonomous Mobile Robots
+# RBCCPS - NOKIA Project
 
