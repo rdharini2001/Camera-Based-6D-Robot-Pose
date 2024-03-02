@@ -1,1 +1,2 @@
-# RBCCPS - Nokia Project 2023
+# Implementation of the paper - Leveraging Fixed Infrastructure Cameras for Collaborative Multi-View Perception for Indoor Autonomous Mobile Robots
+
